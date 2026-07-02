@@ -7,7 +7,7 @@
 | SA-005 | Runtime monitoring and incident playbooks exist | No | Missing |  | Delayed detection and response | SRE Lead | Add alerts, dashboards, and response runbook |
 
 **Readiness Score:** TBD  
-**Decision:** Fail  
+**Decision:** TBD  
 **Top 5 Risks:** TBD  
 **Release Gate Actions:** TBD  
 **Reassessment Date:** TBD  

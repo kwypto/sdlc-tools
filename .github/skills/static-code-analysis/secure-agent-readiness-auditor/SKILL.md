@@ -27,7 +27,7 @@ Assess at least:
 5. Monitoring, alerting, and forensics
 6. Human oversight and fail-safe behavior
 
-Controls 1–3 are designated **critical**: a `Missing` status on any of these prevents a `Pass` decision regardless of overall score.
+Domains 1–3 are designated **critical**: a `Missing` status on any of these prevents a `Pass` decision regardless of overall score.
 
 ## Scoring model
 Per control:
@@ -40,10 +40,10 @@ Overall Readiness %:
 
 Decision thresholds:
 - `Pass` >= 85%
-- `Conditional` 70-84%
+- `Conditional` >= 70% and < 85%
 - `Fail` < 70%
 
-If any control marked `Critical` (Controls 1–3) is `Missing`, decision cannot be `Pass`.
+If any control marked `Critical` is `Missing`, decision cannot be `Pass`.
 
 ## Output requirements
 Produce this table:
