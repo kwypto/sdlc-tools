@@ -58,7 +58,7 @@ Then provide:
 
 ## Quality checks
 1. Every control has evidence or explicit `Missing`.
-2. Critical gaps have owner and due date.
+2. Critical gaps have an owner and due date (if available).
 3. Decision matches score and critical-gap rule.
 4. Include confidence level (`High`, `Medium`, `Low`) based on evidence completeness.
 
