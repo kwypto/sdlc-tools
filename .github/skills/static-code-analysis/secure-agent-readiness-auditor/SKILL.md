@@ -60,8 +60,8 @@ Then provide:
 
 ## Quality checks
 1. Every control has evidence or explicit `Missing`.
-2. Critical gaps have an owner and due date (if available).
-3. Decision matches score and critical-gap rule.
+2. Every row where `Critical = Yes` and `Status = Missing` must have an `Owner` and due date assigned.
+3. `Decision` matches the score threshold AND the critical-gap rule (no row with `Critical = Yes` has `Status = Missing` for a `Pass`).
 4. Include confidence level (`High`, `Medium`, `Low`) based on evidence completeness.
 
 ## Deliverables
