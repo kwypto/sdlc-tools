@@ -85,6 +85,9 @@ Per control:
 - `Missing` = 0
 - `Unverifiable` = 0
 
+Use `Unverifiable` when a control may exist but sufficient evidence could not be obtained.
+Use `Missing` when available evidence shows the control is absent.
+
 Overall Readiness %:
 `sum(control scores) / (2 * total controls) * 100`
 
