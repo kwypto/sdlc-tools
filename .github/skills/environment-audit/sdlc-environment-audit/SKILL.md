@@ -96,8 +96,8 @@ Decision thresholds (overall and per layer):
 - `Fail` < 70%
 
 Each layer must have at least one control marked **critical**. If any critical control is
-`Missing`, that layer's decision cannot be `Pass`, and the overall decision is capped at
-`Conditional` regardless of aggregate score.
+`Missing` or `Unverifiable`, that layer's decision cannot be `Pass`, and the overall
+decision cannot be `Pass` regardless of aggregate score.
 
 ## Output requirements
 Produce this table in exact column order:
