@@ -122,6 +122,7 @@ Then provide:
 5. `Cross-References` (note if Secure Agent Readiness Auditor or other repo skills should
    be run for deeper analysis of specific findings)
 6. `Reassessment Date`
+7. `Confidence` (`High`, `Medium`, `Low`) per layer and overall
 
 ## Decision rules
 1. If any critical control in a layer is `Missing` or `Unverifiable`, that layer's
