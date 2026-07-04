@@ -101,7 +101,8 @@ Decision thresholds (overall and per layer):
 
 Each layer must have at least one control marked **critical**. If any critical control is
 `Missing` or `Unverifiable`, that layer's decision cannot be `Pass`, and the overall
-decision cannot be `Pass` regardless of aggregate score.
+decision cannot be `Pass` regardless of aggregate score. This conservative rule treats
+evidence gaps on critical controls as readiness blockers until verification is available.
 
 ## Output requirements
 Produce this table in exact column order:
