@@ -105,7 +105,7 @@ decision cannot be `Pass` regardless of aggregate score. This conservative rule 
 evidence gaps on critical controls as readiness blockers until verification is available.
 
 ## Output requirements
-Produce this table in exact column order:
+Produce this table in exact column order. `Status` must be one of `Implemented`, `Partial`, `Missing`, `Unverifiable`:
 
 | Layer | Control ID | Control Description | Critical | Status | Evidence | Risk if Missing | Owner | Remediation |
 |---|---|---|---|---|---|---|---|---|
