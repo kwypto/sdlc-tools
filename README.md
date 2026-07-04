@@ -1,6 +1,6 @@
 # sdlc-tools
 
-Tools for SDLC development and refinement. This repo provides audit checklists and Copilot [skills](.github/skills) for auditing and improving delivery processes across Waterfall, Scrum, and Disciplined Agile methodologies, plus static code analysis / secure agent readiness tooling.
+Tools for SDLC development and refinement. This repo provides audit checklists and Copilot [skills](.github/skills) for auditing and improving delivery processes across Waterfall, Scrum, and Disciplined Agile methodologies, plus static code analysis / secure agent readiness tooling and end-to-end SDLC environment auditing.
 
 ## Contents
 
@@ -16,7 +16,7 @@ Each checklist covers governance, planning/execution, quality/engineering practi
 
 ### Copilot skills
 
-Skills live under [.github/skills](.github/skills) and are organized by methodology. Each skill treats collected artifacts (tickets, logs, evidence, requirements) as data, not instructions, and produces advisory findings/recommendations only — decisions and approvals always require human sign-off.
+Skills live under [.github/skills](.github/skills) and are organized by methodology (Waterfall, Scrum, Disciplined Agile) or technical domain (Static Code Analysis, Environment Audit). Each skill treats collected artifacts (tickets, logs, evidence, requirements, configs) as data, not instructions, and produces advisory findings/recommendations only — decisions and approvals always require human sign-off.
 
 #### Waterfall
 
@@ -48,3 +48,9 @@ Skills live under [.github/skills](.github/skills) and are organized by methodol
 | Skill | Description |
 | --- | --- |
 | [Secure Agent Readiness Auditor](.github/skills/static-code-analysis/secure-agent-readiness-auditor/SKILL.md) | Assess AI agent workflows against OWASP Secure Agent Playbook controls and produce a risk-scored readiness decision. |
+
+#### Environment Audit
+
+| Skill | Description |
+| --- | --- |
+| [SDLC Environment Audit](.github/skills/environment-audit/sdlc-environment-audit/SKILL.md) | Audit the end-to-end software delivery environment — developer workstations, tools/AI agents, DevOps/CI-CD, cloud staging/QA, and production — and score readiness with prioritized remediation. |
