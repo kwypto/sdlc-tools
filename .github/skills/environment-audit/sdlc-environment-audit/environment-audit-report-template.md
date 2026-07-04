@@ -12,11 +12,11 @@
 | Production | PR-002 | Backup and disaster recovery tested within last quarter | Yes | Missing |  | Extended outage / data loss on failure | SRE Lead | Schedule and execute DR test, document results |
 
 **Per-Layer Readiness:**
-- Developer Workstation: TBD — Decision: TBD
-- Tools & AI Agents: TBD — Decision: TBD (see Secure Agent Readiness Auditor for AI agent depth)
-- DevOps/CI-CD: TBD — Decision: TBD
-- Cloud Staging/QA: TBD — Decision: TBD
-- Production: TBD — Decision: TBD
+- Developer Workstation: TBD — Decision: TBD — Confidence: TBD
+- Tools & AI Agents: TBD — Decision: TBD — Confidence: TBD (see Secure Agent Readiness Auditor for AI agent depth)
+- DevOps/CI-CD: TBD — Decision: TBD — Confidence: TBD
+- Cloud Staging/QA: TBD — Decision: TBD — Confidence: TBD
+- Production: TBD — Decision: TBD — Confidence: TBD
 
 **Overall Readiness Score:** TBD
 **Overall Decision:** TBD
@@ -24,4 +24,4 @@
 **Remediation Roadmap:** TBD
 **Cross-References:** Run Secure Agent Readiness Auditor (`static-code-analysis/secure-agent-readiness-auditor`) for AI agent findings flagged above.
 **Reassessment Date:** TBD
-**Confidence:** Low
+**Overall Confidence:** Low

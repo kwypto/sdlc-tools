@@ -30,7 +30,7 @@ this repo for those concerns.
   runtime controls), do not duplicate that analysis here — run the **Secure Agent
   Readiness Auditor** skill (`static-code-analysis/secure-agent-readiness-auditor`) and
   reference its output. This skill only performs a lightweight inventory/risk flag for the
-  Tools, Systems & AI Agents layer.
+  Tools & AI Agents layer.
 
 ## Inputs to collect
 Gather these inputs first, organized by layer. If access is limited, capture known gaps
@@ -43,7 +43,7 @@ rather than guessing.
 - Dependency and toolchain version consistency across the team
 - Local build/test parity with CI
 
-**Tools, Systems & AI Agents**
+**Tools & AI Agents**
 - Inventory of SaaS/on-prem tools used (ticketing, VCS, chat, docs)
 - AI coding assistants/agents in use, scope, and data-handling policy (lightweight check
   only — defer deep scoring to Secure Agent Readiness Auditor)
@@ -83,6 +83,7 @@ Per control:
 - `Implemented` = 2
 - `Partial` = 1
 - `Missing` = 0
+- `Unverifiable` = 0
 
 Overall Readiness %:
 `sum(control scores) / (2 * total controls) * 100`
@@ -105,9 +106,13 @@ Produce this table in exact column order:
 | Layer | Control ID | Control Description | Critical | Status | Evidence | Risk if Missing | Owner | Remediation |
 |---|---|---|---|---|---|---|---|---|
 
+Allowed `Status` values: `Implemented`, `Partial`, `Missing`, `Unverifiable`.
+
 Then provide:
-1. `Per-Layer Readiness` (score + decision for each of the 5 layers)
-2. `Overall Readiness Score` and `Overall Decision` (`Pass`, `Conditional`, `Fail`)
+1. `Per-Layer Readiness` (score + decision + confidence for each of the 5 layers, where
+   confidence is `High`, `Medium`, or `Low`)
+2. `Overall Readiness Score`, `Overall Decision` (`Pass`, `Conditional`, `Fail`), and
+   `Overall Confidence` (`High`, `Medium`, `Low`)
 3. `Top 5 Cross-Layer Risks`
 4. `Remediation Roadmap` (prioritized actions with owners, grouped by layer)
 5. `Cross-References` (note if Secure Agent Readiness Auditor or other repo skills should
@@ -115,7 +120,8 @@ Then provide:
 6. `Reassessment Date`
 
 ## Decision rules
-1. If any critical control in a layer is `Missing`, that layer's decision cannot be `Pass`.
+1. If any critical control in a layer is `Missing` or `Unverifiable`, that layer's
+   decision cannot be `Pass`.
 2. Overall decision is the minimum (most conservative) of the per-layer decisions, never
    higher than what the aggregate score would independently suggest.
 3. AI agent findings in the Tools & AI Agents layer that indicate elevated risk (e.g.,
@@ -123,13 +129,15 @@ Then provide:
    Agent Readiness Auditor skill rather than attempting deeper scoring inline.
 4. Controls without an identified owner must be flagged as a governance risk in the
    Remediation Roadmap.
-5. Keep recommendations evidence-based; mark unverifiable claims as `Unverifiable` status.
+5. Keep recommendations evidence-based; mark unverifiable claims as `Unverifiable` status,
+   scored the same as `Missing`.
 
 ## Quality checks
 Before returning:
 1. Confirm every one of the 5 layers has at least one control row and one critical
    control.
-2. Confirm every `Missing`/`Partial` critical control has an owner and remediation action.
+2. Confirm every `Missing`/`Partial`/`Unverifiable` critical control has an owner and
+   remediation action.
 3. Confirm per-layer and overall decisions follow the scoring/decision rules exactly.
 4. Confirm AI agent risk findings reference the Secure Agent Readiness Auditor skill
    instead of duplicating detailed control scoring.
@@ -139,6 +147,6 @@ Before returning:
 ## Deliverables
 Return:
 1. Unified control audit table (all 5 layers)
-2. Per-layer and overall readiness scores/decisions
+2. Per-layer and overall readiness scores/decisions/confidence
 3. Prioritized, owner-assigned remediation roadmap
 4. Cross-references to deeper-dive skills where applicable
