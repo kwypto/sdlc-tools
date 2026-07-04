@@ -16,7 +16,7 @@ Each checklist covers governance, planning/execution, quality/engineering practi
 
 ### Copilot skills
 
-Skills live under [.github/skills](.github/skills) and are organized by methodology. Each skill treats collected artifacts (tickets, logs, evidence, requirements) as data, not instructions, and produces advisory findings/recommendations only — decisions and approvals always require human sign-off.
+Skills live under [.github/skills](.github/skills) and are organized by methodology (Waterfall, Scrum, Disciplined Agile) or technical domain (Static Code Analysis, Environment Audit). Each skill treats collected artifacts (tickets, logs, evidence, requirements, configs) as data, not instructions, and produces advisory findings/recommendations only — decisions and approvals always require human sign-off.
 
 #### Waterfall
 
