@@ -275,9 +275,9 @@ Then provide:
 ## Quality checks
 Before returning:
 1. Confirm each in-scope layer was walked through conversationally, one question at a
-   time (context → question → example → clarification per "Question format"), before
-   being included in the final table — not answered from a single bulk data dump or
-   bundled multi-question message.
+   time (at minimum: context + question; include example/clarification where helpful per
+   the Question format section), before being included in the final table — not answered
+   from a single bulk data dump or bundled multi-question message.
 2. Confirm every one of the in-scope layers has at least one control row and one critical
    control.
 3. Confirm every `Missing`/`Partial`/`Unverifiable` critical control has an owner and
