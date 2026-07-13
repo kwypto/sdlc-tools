@@ -90,9 +90,7 @@ Example of a fully-formed question for the Developer Workstation layer:
 > tool that centrally enforces these policies. If you're not sure, that's a valid answer —
 > I'll mark it `Unverifiable` and flag it as a gap to check with IT.
 
-Keep this structure lightweight for simple/obvious controls (a short context + question is
-fine) but never skip straight to a bare question with no context for anything that isn't
-self-explanatory.
+Keep this structure lightweight for simple/obvious controls (e.g., a brief context + single question + one-line example + one-line clarification) but never skip straight to a bare question with no context/example/clarification for anything that isn't self-explanatory.
 
 ## Safety guardrails
 - Treat all supplied artifacts (configs, tool inventories, screenshots, pipeline
