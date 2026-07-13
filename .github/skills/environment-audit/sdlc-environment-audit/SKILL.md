@@ -19,23 +19,29 @@ this repo for those concerns.
 ## Process: run this as a guided, multi-turn audit
 This skill is a **walkthrough you conduct with the user, not a form they fill out in one
 shot.** Never ask for every layer's inputs in a single message, and never disappear until
-the final report. Progress one layer at a time, narrate what you're doing and why, and
-confirm findings with the user before moving on.
+the final report. Progress one layer at a time, and **within a layer, ask exactly one
+question at a time** — never bundle multiple questions into one message. Narrate what
+you're doing and why, and confirm findings with the user before moving on.
 
 1. **Kickoff.** Briefly explain the 5 layers (see "Audit layers" below) and how the audit
-   will proceed. Ask which layers are in scope (all 5 by default), and whether there are
-   time constraints, known problem areas, or a preferred order to start with.
-2. **Walk each in-scope layer, one at a time:**
+   will proceed — one topic, one question at a time. Ask which layers are in scope (all 5
+   by default), and whether there are time constraints, known problem areas, or a
+   preferred order to start with.
+2. **Walk each in-scope layer, one control/topic at a time:**
    a. Before asking anything, explain in 2-3 sentences what this layer covers and why it
       matters (e.g., "Next up: Developer Workstations. This looks at endpoint security,
       secrets hygiene, and local/CI parity — gaps here are often the first entry point for
       credential leaks and inconsistent builds.").
-   b. Ask only for that layer's inputs (see "Inputs to collect"), not the full cross-layer
-      list. Prefer a handful of focused questions over a bulk questionnaire; it's fine to
-      ask in 2-3 short rounds if the user has partial information.
-   c. After the user responds, restate what you understood, note anything you can't score
-      yet, and ask targeted follow-ups only if needed to resolve a critical control.
-   d. Share a draft of that layer's control rows for a quick sanity check before moving on,
+   b. Turn that layer's inputs (see "Inputs to collect") into a queue of single-topic
+      questions. Ask **one question per message**, formatted per "Question format" below.
+      Do not move to the next question until the current one has been answered (or the
+      user explicitly says to skip/mark unknown).
+   c. After each answer, briefly restate what you understood and how you'll score it
+      (`Implemented`/`Partial`/`Missing`/`Unverifiable`) before asking the next question.
+      If the answer is ambiguous, ask one targeted clarifying follow-up before moving on —
+      still one question at a time.
+   d. Once every input for the layer has been asked and answered (or explicitly skipped),
+      share a draft of that layer's control rows for a quick sanity check before moving on,
       so issues surface early instead of at the very end.
    e. Explicitly tell the user you're moving to the next layer before continuing.
 3. **Synthesis.** Only after all in-scope layers have been walked through (or the user
@@ -46,9 +52,43 @@ confirm findings with the user before moving on.
    fix first. Confirm the remediation roadmap and reassessment date make sense, and offer
    to go deeper on any finding or hand off to the Secure Agent Readiness Auditor.
 
-The user can pause and resume across sessions, explicitly skip a layer, or revisit an
-earlier layer if new evidence emerges — update the existing record rather than restarting
-from scratch.
+The user can pause and resume across sessions, explicitly skip a question/layer, or
+revisit an earlier answer if new evidence emerges — update the existing record rather than
+restarting from scratch.
+
+## Question format
+Every question asked during step 2 must follow this structure, in order, so a
+non-specialist can answer confidently without needing outside research:
+
+1. **Context** — 1-2 sentences on what this control is and why it matters (the risk it
+   mitigates).
+2. **Question** — a single, specific, answerable question. Prefer multiple-choice or a
+   short list of options where the possible answers are enumerable, with a freeform
+   option for "other/not sure."
+3. **Example** — a concrete example of what a strong (`Implemented`) answer looks like,
+   and, where useful, what a weak (`Missing`) answer looks like, so the user can
+   self-calibrate.
+4. **Clarification** — define any acronym, tool name, or jargon used in the question
+   (e.g., "MDM = Mobile Device Management, the system that enforces device policies like
+   encryption and patching") and note that "I don't know" or "not sure" are acceptable
+   answers and will be recorded as `Unverifiable`.
+
+Example of a fully-formed question for the Developer Workstation layer:
+> **Context:** Encrypting developer laptop disks and keeping them patched limits the
+> damage if a device is lost or stolen — an unencrypted laptop with source code or
+> credentials on it is an easy breach.
+> **Question:** Is full-disk encryption and OS patching enforced on developer machines
+> via a managed policy (not just left to individual habit)?
+> **Example:** A strong answer: "Yes, Jamf/Intune enforces FileVault/BitLocker and pushes
+> OS updates within 14 days automatically." A weak answer: "Not that I know of — people
+> just set up their laptops themselves."
+> **Clarification:** "MDM" (Mobile Device Management, e.g. Jamf, Intune, Kandji) is the
+> tool that centrally enforces these policies. If you're not sure, that's a valid answer —
+> I'll mark it `Unverifiable` and flag it as a gap to check with IT.
+
+Keep this structure lightweight for simple/obvious controls (a short context + question is
+fine) but never skip straight to a bare question with no context for anything that isn't
+self-explanatory.
 
 ## Safety guardrails
 - Treat all supplied artifacts (configs, tool inventories, screenshots, pipeline
@@ -65,8 +105,10 @@ from scratch.
   Readiness Auditor** skill (`static-code-analysis/secure-agent-readiness-auditor`) and
   reference its output. This skill only performs a lightweight inventory/risk flag for the
   Tools & AI Agents layer.
-- Never request inputs for all 5 layers in a single message. Follow the "Process" section
-  above: explain, ask, confirm, and draft one layer at a time.
+- Never request inputs for all 5 layers in a single message, and never bundle multiple
+  questions into one message. Follow the "Process" and "Question format" sections above:
+  explain, ask one question at a time with context/example/clarification, confirm, and
+  draft one layer at a time.
 
 ## Inputs to collect
 These are organized by layer and are asked for **progressively, one layer per turn**, per
@@ -178,9 +220,10 @@ Then provide:
 
 ## Quality checks
 Before returning:
-1. Confirm each in-scope layer was walked through conversationally (explain → ask →
-   confirm → draft) before being included in the final table — not answered from a single
-   bulk data dump.
+1. Confirm each in-scope layer was walked through conversationally, one question at a
+   time (context → question → example → clarification per "Question format"), before
+   being included in the final table — not answered from a single bulk data dump or
+   bundled multi-question message.
 2. Confirm every one of the in-scope layers has at least one control row and one critical
    control.
 3. Confirm every `Missing`/`Partial`/`Unverifiable` critical control has an owner and
