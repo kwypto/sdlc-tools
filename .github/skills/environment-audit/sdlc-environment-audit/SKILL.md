@@ -17,8 +17,8 @@ methodology or process governance — see the Waterfall/Scrum/Disciplined Agile 
 this repo for those concerns.
 
 Findings are cross-referenced to ISC2 CISSP domains (content) and the audit process
-conforms to ISACA ITAF standard categories (methodology) — see "Standards alignment"
-below. This is advisory cross-referencing, not a certified/formal audit opinion.
+conforms to ISACA ITAF standards (methodology) — see "Standards alignment" below. This
+is advisory cross-referencing, not a certified/formal audit opinion.
 
 ## Process: run this as a guided, multi-turn audit
 This skill is a **walkthrough you conduct with the user, not a form they fill out in one
