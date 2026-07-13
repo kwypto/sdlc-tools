@@ -53,4 +53,4 @@ Skills live under [.github/skills](.github/skills) and are organized by methodol
 
 | Skill | Description |
 | --- | --- |
-| [SDLC Environment Audit](.github/skills/environment-audit/sdlc-environment-audit/SKILL.md) | Audit the end-to-end software delivery environment — developer workstations, tools/AI agents, DevOps/CI-CD, cloud staging/QA, and production — and score readiness with prioritized remediation. |
+| [SDLC Environment Audit](.github/skills/environment-audit/sdlc-environment-audit/SKILL.md) | Audit the end-to-end software delivery environment — developer workstations, tools/AI agents, DevOps/CI-CD, cloud staging/QA, and production — and score readiness with prioritized remediation, aligned to ISACA ITAF audit standards and ISC2 CISSP domains. |

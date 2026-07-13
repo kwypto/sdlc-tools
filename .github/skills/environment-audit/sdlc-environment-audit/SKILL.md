@@ -1,6 +1,6 @@
 ---
 name: SDLC Environment Audit
-description: Audit the end-to-end software delivery environment — developer workstations, tools/AI agents, DevOps/CI-CD, cloud staging/QA, and production — and score readiness with prioritized remediation.
+description: Audit the end-to-end software delivery environment — developer workstations, tools/AI agents, DevOps/CI-CD, cloud staging/QA, and production — and score readiness with prioritized remediation, aligned to ISACA ITAF audit standards and ISC2 CISSP domains.
 ---
 
 # SDLC Environment Audit Skill
@@ -15,6 +15,10 @@ external customers.
 This skill focuses on the **technical environment and toolchain**, not delivery
 methodology or process governance — see the Waterfall/Scrum/Disciplined Agile skills in
 this repo for those concerns.
+
+Findings are cross-referenced to ISC2 CISSP domains (content) and the audit process
+conforms to ISACA ITAF standard categories (methodology) — see "Standards alignment"
+below. This is advisory cross-referencing, not a certified/formal audit opinion.
 
 ## Process: run this as a guided, multi-turn audit
 This skill is a **walkthrough you conduct with the user, not a form they fill out in one
@@ -157,6 +161,48 @@ Every finding must be tagged with one of these five `Layer` values:
 4. Cloud Staging/QA
 5. Production
 
+## Standards alignment (ISACA ITAF / ISC2 CISSP)
+This skill aligns to two external frameworks in different ways — content mapping for
+CISSP, process conformance for ITAF. Do not present these as certifications or formal
+attestations; they are advisory cross-references only.
+
+**ISC2 CISSP domain tagging (content mapping).** Tag every control row with the single
+most relevant CISSP (2021 CBK) domain:
+1. Security and Risk Management
+2. Asset Security
+3. Security Architecture and Engineering
+4. Communication and Network Security
+5. Identity and Access Management (IAM)
+6. Security Assessment and Testing
+7. Security Operations
+8. Software Development Security
+
+As a starting guide, layers commonly draw on these domains (a control can map to a
+different domain than its layer's default if that fits better):
+- Developer Workstation → typically Asset Security, Security Operations
+- Tools & AI Agents → typically IAM, Security and Risk Management
+- DevOps/CI-CD → typically Software Development Security, Security Assessment and Testing
+- Cloud Staging/QA → typically Security Assessment and Testing, Communication and Network
+  Security
+- Production → typically Security Operations, Communication and Network Security, Asset
+  Security
+
+**ISACA ITAF conformance (process mapping).** ITAF is an audit *process* standard, not a
+control library, so it does not map to individual controls — it maps to how this skill
+conducts the audit (the "Process" section above). State conformance explicitly in the
+final report:
+- **General Standards** (audit charter, independence, due professional care, proficiency)
+  → satisfied by the Kickoff step: scope, authority, and constraints are agreed with the
+  user before evidence gathering begins, and the skill discloses it is an advisory tool,
+  not a substitute for a credentialed auditor's independent judgment.
+- **Performance Standards** (engagement planning, risk assessment, evidence, materiality,
+  supervision) → satisfied by the per-layer walkthrough: one-question-at-a-time evidence
+  collection, explicit `Unverifiable` handling for insufficient evidence, and the
+  critical-control materiality rule in "Scoring model."
+- **Reporting Standards** (reporting, follow-up activities) → satisfied by the Synthesis
+  and Debrief steps: the findings table, readiness scores/decisions, and the Remediation
+  Roadmap with owners and a Reassessment Date (follow-up).
+
 ## Scoring model
 Per control:
 - `Implemented` = 2
@@ -186,10 +232,11 @@ evidence gaps on critical controls as readiness blockers until verification is a
 ## Output requirements
 Produced at the **Synthesis** step (Process, step 3) — after the guided per-layer
 walkthrough, not before. Produce this table in exact column order. `Status` must be one of
-`Implemented`, `Partial`, `Missing`, `Unverifiable`:
+`Implemented`, `Partial`, `Missing`, `Unverifiable`; `CISSP Domain` must be one of the 8
+domains listed in "Standards alignment":
 
-| Layer | Control ID | Control Description | Critical | Status | Evidence | Risk if Missing | Owner | Remediation |
-|---|---|---|---|---|---|---|---|---|
+| Layer | Control ID | Control Description | Critical | CISSP Domain | Status | Evidence | Risk if Missing | Owner | Remediation |
+|---|---|---|---|---|---|---|---|---|---|
 
 Allowed `Status` values: `Implemented`, `Partial`, `Missing`, `Unverifiable`.
 
@@ -204,6 +251,9 @@ Then provide:
    be run for deeper analysis of specific findings)
 6. `Reassessment Date`
 7. `Confidence` (`High`, `Medium`, `Low`) per layer and overall
+8. `ITAF Process Conformance` — a short statement confirming the audit followed ITAF's
+   General, Performance, and Reporting Standards per "Standards alignment" above (this is
+   a process self-attestation, not a formal ITAF certification)
 
 ## Decision rules
 1. If any critical control in a layer is `Missing` or `Unverifiable`, that layer's
@@ -217,6 +267,9 @@ Then provide:
    Remediation Roadmap.
 5. Keep recommendations evidence-based; mark unverifiable claims as `Unverifiable` status,
    scored the same as `Missing`.
+6. Every control row must carry exactly one `CISSP Domain` tag; if a control plausibly
+   spans multiple domains, choose the most specific/primary one and note the secondary
+   domain in the Evidence or Remediation cell rather than leaving `CISSP Domain` blank.
 
 ## Quality checks
 Before returning:
@@ -233,10 +286,14 @@ Before returning:
    instead of duplicating detailed control scoring.
 6. Include a confidence level (`High`, `Medium`, `Low`) per layer, based on evidence
    completeness and source access.
+7. Confirm every control row has a `CISSP Domain` value from the approved list of 8.
+8. Confirm the report includes an `ITAF Process Conformance` statement, and that it is
+   framed as advisory process alignment, not a formal certification or attestation.
 
 ## Deliverables
 Return:
-1. Unified control audit table (all 5 layers)
+1. Unified control audit table (all 5 layers), each row tagged with a CISSP domain
 2. Per-layer and overall readiness scores/decisions/confidence
 3. Prioritized, owner-assigned remediation roadmap
 4. Cross-references to deeper-dive skills where applicable
+5. ITAF process conformance statement
