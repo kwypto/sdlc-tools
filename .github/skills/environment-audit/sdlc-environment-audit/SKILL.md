@@ -115,9 +115,10 @@ self-explanatory.
   draft one layer at a time.
 
 ## Inputs to collect
-These are organized by layer and are asked for **progressively, one layer per turn**, per
-the "Process" section above — not gathered all at once. If access is limited for a given
-control, capture the known gap (`Unverifiable`) rather than guessing, and move on.
+These are organized by layer and are asked for **progressively, one layer at a time**, per
+the "Process" section above — and within a layer, **one control question per message**.
+If access is limited for a given control, capture the known gap (`Unverifiable`) rather than
+guessing, and move on.
 
 **Developer Workstation & Local Environment**
 - OS/endpoint management status (patching, disk encryption, endpoint protection)
